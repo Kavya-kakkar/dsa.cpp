@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-class Node {
+class Node { //node class to create a node of the ll
     public:
     int data;
     Node* next;
@@ -12,7 +12,7 @@ class Node {
     }
 };
 
-class List{
+class List{ //list class to implement the ll
     Node* head;
     Node* tail;
 
@@ -21,7 +21,7 @@ public:
         head = tail = NULL;
     }
 
-    void push_front(int val) {
+    void push_front(int val) { //function to insert the node in the front of the ll
         Node* newNode = new Node(val);
         if(head == NULL){
             head = tail = newNode;
@@ -32,7 +32,7 @@ public:
             head = newNode;
         }
      }
-    void push_back(int val) {
+    void push_back(int val) { //funtion to insert the node in the back of the ll
         Node* newNode = new Node(val);
 
         if(head == NULL) {
@@ -44,7 +44,7 @@ public:
         }
      
     }
-    void pop_front() {
+    void pop_front() { //function to delete the node from the front of the ll
         if(head == NULL) {
             cout<<"ll is empty\n";
             return;
@@ -53,7 +53,7 @@ public:
         head = head->next;
         delete temp;
     }
-    void pop_back() {
+    void pop_back() { // function to delete the node from the back of the ll
         if(head == NULL) {
             cout<<"ll is empty\n";
             return;
@@ -67,7 +67,7 @@ public:
         delete tail;
         tail = temp;
     }
-    void printll() {
+    void printll() { // function to print the linked list 
         Node* temp = head;
 
         while(temp != NULL){
@@ -80,7 +80,7 @@ public:
    
 };
 
-int main() {
+int main() { //main function to test the ll implemenatation
     List ll;
     ll.push_front(1);
     ll.push_front(2);

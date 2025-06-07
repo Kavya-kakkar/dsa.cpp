@@ -68,7 +68,7 @@ public:
         tail = temp;
     }
 
-    void insert(int val,int pos) {
+    void insert(int val,int pos) { // function to insert a node at a given position
         if(pos < 0) {
             cout<< "invalid position\n";
             return;
@@ -95,7 +95,7 @@ public:
         }
         cout << endl;
     }
-    int search(int key) {
+    int search(int key) { //function to search for a key in the ll
         Node* temp = head;
         int idx =0;
 
