@@ -63,12 +63,65 @@ bool search(Node* root , int key) {
         return search(root->right,key);
     }
 }
+
+
+Node* getInorderSuccessor(Node* root) {
+    while(root != NULL && root->left != NULL) {
+        root = root->left;
+    }
+    return root;
+}
+
+
+Node* delNode(Node* root , int key) {
+    if(root == NULL) {
+        return NULL;
+    }
+    if(key < root->data) {
+        root->left = delNode(root->left,key);
+
+    }
+    else if(key > root->data) {
+        root->right = delNode(root->right,key);
+    }
+    else {
+        if(root->left == NULL) {
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else if(root->right == NULL) {
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        } else {
+            Node* IS = getInorderSuccessor(root->right);
+            root->data = IS->data;
+            root->right = delNode(root->right, IS->data);
+        }
+    
+    }
+    return root;
+}
+
 int main() {
     vector<int> arr = {3,2,1,5,6,4};
 
     Node* root = buildBst(arr);
+    cout <<  "before : " ;
+
+    inorder(root);
+    cout<< endl;
+
+    delNode(root, 6);
+    
+    cout <<  "after : " ;
+    inorder(root);
+    cout <<  endl;
+
+
     // inorder(root);
     // cout << endl;
-    cout << search(root,5) << endl;
+    // cout << search(root,5) << endl;
     return 0;
 }
