@@ -30,6 +30,14 @@ Node* insert(Node* root , int val) {
 }
 
 
+Node* buildBst(vector<int> arr) {
+    Node* root = NULL;
+
+    for(int val : arr) {
+        root = insert(root,val);
+    }
+    return root;
+}
 
 void inorder(Node* root) {
     if(root == NULL) {
@@ -40,19 +48,27 @@ void inorder(Node* root) {
     inorder(root->right);
 }
 
-Node* buildBst(vector<int> arr) {
-    Node* root = NULL;
-
-    for(int val : arr) {
-        root = insert(root,val);
+bool search(Node* root , int key) {
+    if(root == NULL) {
+        return false;
     }
-    return root;
+    if(root->data == key) {
+        return true;
+    }
+
+    if(key < root->data) {
+        return search(root->left,key);
+    }
+    else {
+        return search(root->right,key);
+    }
 }
 int main() {
     vector<int> arr = {3,2,1,5,6,4};
 
     Node* root = buildBst(arr);
-    inorder(root);
-    cout << endl;
+    // inorder(root);
+    // cout << endl;
+    cout << search(root,5) << endl;
     return 0;
 }
